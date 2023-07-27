@@ -1,0 +1,32 @@
+#include <msp430.h>
+#include "stateMachines.h"
+#include "led.h"
+#include "switches.h"
+
+static unsigned char state = 0;
+
+void toggle() {
+  switch(state) {
+
+  case 0:
+    green_on();
+    red_on();
+    state = 1;
+    break;
+    
+  case 1:
+    green_off();
+    red_on();
+    state = 2;
+    break;
+
+  case 2:
+    green_on();
+    red_off();
+    state = 1;
+    break;
+    
+  default:
+    break;
+  }
+}
